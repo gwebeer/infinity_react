@@ -1,5 +1,5 @@
 import './App.css';
-import FormLogin from './pages/Login';
+import FormLogin from './pages/login';
 import Routes from './routes';
 
 function App() {
