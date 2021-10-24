@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import '../login/index.css'
+import './index.css'
 
-class FormLogin extends Component {
+class Login extends Component {
     
     constructor(props){
         super(props);
@@ -39,4 +39,4 @@ class FormLogin extends Component {
 
 }
 
-export default FormLogin;
+export default Login;

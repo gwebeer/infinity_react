@@ -1,10 +1,11 @@
 import './App.css';
-import FormLogin from './pages/login';
+import FormLogin from './pages/Login';
+import Routes from './routes';
 
 function App() {
   return (
     <div>
-      <FormLogin/>
+      <Routes/>
     </div>
   );
 }
