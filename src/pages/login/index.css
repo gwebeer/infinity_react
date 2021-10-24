@@ -1,0 +1,60 @@
+.container {
+    width: 460px;
+    background: #fff;
+    border-radius: 10px;
+    padding: 40px;
+    text-align: center;
+}
+
+.page {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    background-color: #ebebeb;
+}
+
+.labelLogin {
+    text-transform: uppercase;
+}
+
+.formLogin {
+    width: 70%;
+    padding: 12px;
+    border: solid 0.5px rgb(218, 218, 218);
+    margin-top: 5px;
+}
+
+.titulo{
+    text-transform: uppercase;
+}
+
+.campo {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.btLogin {
+    width: 75%;
+    padding: 12px;
+    margin: 10px;
+    border-radius: 100px;
+    border: solid 1px rgb(78, 78, 78);
+    background-color: rgb(78, 78, 78);
+    color: white;
+    font-size: 15px;
+}
+
+.btLogin:hover {
+    cursor: pointer;
+    background-color: #fff;
+    border: solid 1px rgb(78, 78, 78);
+    color: rgb(78, 78, 78);
+}
+
+#forgotPassword {
+    color:rgb(78, 78, 78);
+    font-size: 13px;
+}
