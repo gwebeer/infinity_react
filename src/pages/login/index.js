@@ -29,7 +29,7 @@ class Login extends Component {
         return(
             <div class="page">
                 <div className="container">
-                    <h1 className="titulo"> Infinity </h1>
+                    <h1 className="titulo"> Infinite </h1>
 
                     <div className="campo">
                         <label className="labelLogin"> Usuário </label> <br/>
