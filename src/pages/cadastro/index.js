@@ -21,6 +21,7 @@ class Cadastro extends Component {
         }
         
         this.dadosCadastro = this.dadosCadastro.bind(this);
+        this.gravaBanco = this.gravaBanco.bind(this);
         this.btCadastroClick = this.btCadastroClick.bind(this);
     }
 
@@ -31,8 +32,20 @@ class Cadastro extends Component {
     }
 
     btCadastroClick(){
-        alert("Teste");
-        
+        const {nome, email, username, password, checkPassword, birthDate} = this.state.form;
+
+        if(nome !== "" && email !== "" && username !== "" && password !== "" && checkPassword !== "" && birthDate !== "") {
+            if(password !== checkPassword) {
+                alert("As senhas não correspondem!")
+            } else {
+                this.gravaBanco();
+            }
+        } else {
+            alert("Preencha todos os campos!")
+        }
+    }
+
+    gravaBanco(){      
         firebase.firestore().collection('cadastro')
         .add({
             username: this.state.form.username,
@@ -43,9 +56,18 @@ class Cadastro extends Component {
         })
         .then(()=>{
             console.log('DADOS CADASTRADO COM SUCESSO!');
+            alert("Cadastro Realizado! Seja bem-vindo(a)!");
+            this.setState({form: {username: ""} });
+            this.setState({form: {password: ""} });
+            this.setState({form: {nome: ""} });
+            this.setState({form: {email: ""} });
+            this.setState({form: {birthDate: ""} });
+            this.setState({form: {checkPassword: ""} })
+
         })
         .catch((error)=>{
             console.log('GEROU ALGUM ERRO: ' + error);
+            alert("Ops! Algo deu errado. Tente novamente!")
         })
     }
 
