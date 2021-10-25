@@ -5,7 +5,7 @@ import Cadastro from "./pages/cadastro";
 const Routes = () => {
     return(
         <BrowserRouter>
-            <Route path="/" component={Login} />
+            <Route path="/" component={Cadastro} />
         </BrowserRouter>
     )
 }

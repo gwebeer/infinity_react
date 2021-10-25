@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import './index.css'
 import './util.css'
+import firebase from '../../firebaseConnection';
+
+import {useState, useEffect} from 'react';
 
 class Cadastro extends Component {
     
@@ -28,7 +31,22 @@ class Cadastro extends Component {
     }
 
     btCadastroClick(){
+        alert("Teste");
         
+        firebase.firestore().collection('cadastro')
+        .add({
+            username: this.state.form.username,
+            password: this.state.form.password,
+            nome: this.state.form.nome,
+            email: this.state.form.email,
+            birthDate: this.state.form.birthDate,
+        })
+        .then(()=>{
+            console.log('DADOS CADASTRADO COM SUCESSO!');
+        })
+        .catch((error)=>{
+            console.log('GEROU ALGUM ERRO: ' + error);
+        })
     }
 
     render(){
