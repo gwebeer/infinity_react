@@ -45,9 +45,13 @@ class Cadastro extends Component {
         }
     }
 
-    gravaBanco(){      
-        firebase.firestore().collection('cadastro')
-        .add({
+    gravaBanco(){    
+        firebase.auth().createUserWithEmailAndPassword(this.state.form.email, this.state.form.password)
+        .then( async (value)=>{
+        
+        firebase.firestore().collection('users')
+        .doc(value.user.uid)
+        .set({
             username: this.state.form.username,
             password: this.state.form.password,
             nome: this.state.form.nome,
@@ -66,10 +70,17 @@ class Cadastro extends Component {
 
         })
         .catch((error)=>{
+            if(error.code === 'auth/weak-password'){
+                alert('Senha muito fraca..')
+              }else if(error.code === 'auth/email-already-in-use'){
+                alert('Esse email já existe!');
+              }
             console.log('GEROU ALGUM ERRO: ' + error);
             alert("Ops! Algo deu errado. Tente novamente!")
         })
+    })
     }
+
 
     render(){
         return(
