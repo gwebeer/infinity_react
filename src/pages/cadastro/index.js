@@ -3,8 +3,6 @@ import './index.css'
 import './util.css'
 import firebase from '../../firebaseConnection';
 
-import {useState, useEffect} from 'react';
-
 class Cadastro extends Component {
     
     constructor(props){

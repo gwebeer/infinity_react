@@ -3,6 +3,7 @@ import './index.css'
 import './util.css'
 import logo from '../../images/logo.png'
 import firebase from '../../firebaseConnection';
+import { Link } from 'react-router-dom';
 
 class Login extends Component {
     
@@ -13,6 +14,14 @@ class Login extends Component {
                 username: "",
                 password: ""
             }
+        }
+
+        this.componentDidMount=()=>{
+            firebase.auth().onAuthStateChanged((user)=>{
+                if(user){
+                    window.location = '/';
+                }
+            })
         }
 
         this.loginData = this.loginData.bind(this);
@@ -35,7 +44,7 @@ class Login extends Component {
             .doc(value.user.uid)
             .get()
             .then((snapshot)=>{
-                alert("Logado")    
+                //window.location = '/';
             })
     
     
@@ -49,7 +58,7 @@ class Login extends Component {
 
     render(){
         return(
-<div class="limiter">
+            <div class="limiter">
                 <div className="container-login100">
                     <div className="wrap-login100 p-l-85 p-r-85 p-t-55 p-b-55">
                         <div className="login100-form validate-form flex-sb flex-w">
