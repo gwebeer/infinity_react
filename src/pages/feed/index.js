@@ -29,7 +29,7 @@ import '../../css/templateHome/lib/slick/slick-theme.css';
 import firebase from 'firebase';
 import Locator from '../../components/locator';
 
-class Home extends Component {
+class Feed extends Component {
     
     constructor(props){
         super(props);
@@ -115,4 +115,4 @@ class Home extends Component {
 
 }
 
-export default Home;
+export default Feed;
