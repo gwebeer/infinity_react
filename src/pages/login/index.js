@@ -1,9 +1,23 @@
 import React, { Component } from 'react';
-import './index.css'
-import './util.css'
-import logo from '../../images/logo.png'
-import firebase from '../../firebaseConnection';
-import { Link } from 'react-router-dom';
+
+import firebase from 'firebase';
+
+import infinityLogo from '../../images/infinity_logo.png'
+import copy from '../../images/copy-icon.png'
+
+import '../../css/templateHome/animate.css';
+import '../../css/templateHome/bootstrap.min.css';
+import '../../css/templateHome/jquery.mCustomScrollbar.min.css'
+import '../../css/templateHome/responsive.css';
+import '../../css/templateHome/style.css';
+
+import '../../css/templateHome/cssFonts/line-awesome.css'
+import '../../css/templateHome/cssFonts/line-awesome-font-awesome.min.css'
+import '../../css/templateHome/cssFonts/font-awesome.min.css'
+
+import '../../css/templateHome/vendor/fontawesome-free/css/all.min.css';
+import '../../css/templateHome/lib/slick/slick.css';
+import '../../css/templateHome/lib/slick/slick-theme.css';
 
 class Login extends Component {
     
@@ -14,14 +28,6 @@ class Login extends Component {
                 username: "",
                 password: ""
             }
-        }
-
-        this.componentDidMount=()=>{
-            firebase.auth().onAuthStateChanged((user)=>{
-                if(user){
-                    window.location = '/';
-                }
-            })
         }
 
         this.loginData = this.loginData.bind(this);
@@ -44,7 +50,7 @@ class Login extends Component {
             .doc(value.user.uid)
             .get()
             .then((snapshot)=>{
-                //window.location = '/';
+                window.location = '/';
             })
     
     
@@ -58,61 +64,90 @@ class Login extends Component {
 
     render(){
         return(
-            <div class="limiter">
-                <div className="container-login100">
-                    <div className="wrap-login100 p-l-85 p-r-85 p-t-55 p-b-55">
-                        <div className="login100-form validate-form flex-sb flex-w">
-                            <span className="login100-form-title p-b-32">
-                                <img src={logo} className="imagemLogo"/>
-                            </span>
+            <div class="sign-in">
+                <div class="wrapper">		
+                    <div class="sign-in-page">
+                        <div class="signin-popup">
+                            <div class="signin-pop">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="cmp-info">
+                                            <div class="cm-logo">
+                                                <img src={infinityLogo}/>
+                                                <p>Faça parte das comunidades dos conteúdos que você mais gosta! Junte-se a outros usuários na discussão de filmes, séries e livros!</p>
+                                            </div>	
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="login-sec">
+                                            <div class="sign_in_sec current" id="tab-1">
+                                                
+                                                <h3>Faça o Login</h3>
+                                                <form action="javascript:void(0);">
+                                                    <div class="row">
+                                                        <div class="col-lg-12 no-pdd">
+                                                            <div class="sn-field">
+                                                                <input type="text" name="username" placeholder="E-mail" name="username"
+                                                                        value={this.state.form.username} onChange={this.loginData} />
+                                                                <i class="la la-user"></i>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-12 no-pdd">
+                                                            <div class="sn-field">
+                                                                <input type="password" name="password" placeholder="Senha" name="password" 
+                                                                        value={this.state.form.password} onChange={this.loginData} />
+                                                                <i class="la la-lock"></i>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-12 no-pdd">
+                                                            <div class="checky-sec">
+                                                                <div class="fgt-sec">
+                                                                    <input type="checkbox" name="cc" id="c1"/>
+                                                                    <label for="c1">
+                                                                        <span></span>
+                                                                    </label>
+                                                                    <small>Lembrar-me</small>
+                                                                </div>
+                                                                <a href="#" title="">Esqueceu a senha?</a>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-12 no-pdd">
+                                                            <button onClick={this.btEntrarClick}>Entrar</button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                                
+                                                <div class="login-resources">
+                                                    <h4>Ou entre com suas redes sociais</h4>
+                                                    <ul>
+                                                        <li><a href="#" title="" class="fb"><i class="fa fa-facebook"></i>Login Via Facebook</a></li>
+                                                        <li><a href="#" title="" class="tw"><i class="fa fa-twitter"></i>Login Via Twitter</a></li>
+                                                    </ul>
+                                                </div>
 
-                            <span className="txt1 p-b-11">
-                                Usuário
-                            </span>
-                            <div className="wrap-input100 validate-input m-b-36" data-validate = "Digite o e-mail">
-                                <input className="input100" type="text" name="username" placeholder="Usuário" id="tUsername"
-                                        value={this.state.form.username} onChange={this.loginData} />
-                                <span className="focus-input100"></span>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                </div>		
                             </div>
-                            
-                            <span className="txt1 p-b-11">
-                                Senha
-                            </span>
-                            <div className="wrap-input100 validate-input m-b-12" data-validate = "Digite a senha">
-                                <span className="btn-show-pass">
-                                    <i className="fa fa-eye"></i>
-                                </span>
-                                <input className="input100" type="password" name="password" placeholder="Senha"  id="tPassword"
-                                        value={this.state.form.password} onChange={this.loginData} />
-                                <span className="focus-input100"></span>
+                        </div>
+                        <div class="footy-sec">
+                            <div class="container">
+                                <ul>
+                                    <li><a href="about.html" title="">Sobre nós</a></li>
+                                    <li><a href="#" title="">Política de Privacidade</a></li>
+                                    <li><a href="#" title="">Política de Cookies</a></li>
+                                    <li><a href="#" title="">Idioma</a></li>
+                                </ul>
+                                <p><img src={copy}/>Copyright 2021</p>
                             </div>
-                            
-                            <div className="flex-sb-m w-full p-b-48">
-                                <div className="contact100-form-checkbox">
-                                    <input className="input-checkbox100" id="ckb1" type="checkbox" name="remember-me"/>
-                                    <label className="label-checkbox100" for="ckb1">
-                                        Lembrar-me
-                                    </label>
-                                </div>
-
-                                <div>
-                                    <a href="#" className="txt3">
-                                        Esqueceu a senha?
-                                    </a>
-                                </div>
-                            </div>
-
-                            <div className="container-login100-form-btn">
-                                <button className="login100-form-btn teste" onClick={this.btEntrarClick}>
-                                    Entrar
-                                </button>
-                            </div>
-
                         </div>
                     </div>
+
+
                 </div>
             </div>
-
         )
     }
 
