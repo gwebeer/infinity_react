@@ -30,6 +30,14 @@ class Login extends Component {
             }
         }
 
+        this.componentDidMount=()=>{
+            firebase.auth().onAuthStateChanged((user)=>{
+                if(user){
+                    window.location = '/';
+                }
+            })
+        }
+
         this.loginData = this.loginData.bind(this);
         this.btEntrarClick = this.btEntrarClick.bind(this);
     }

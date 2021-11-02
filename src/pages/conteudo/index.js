@@ -22,6 +22,7 @@ import firebase from 'firebase';
 
 import Titulo from '../../components/titulo/index.js';
 import Postbar from '../../components/postbar/index.js';
+import NotFound from '../../components/notFound/posts.js';
 
 class Conteudo extends Component {
     
@@ -38,6 +39,7 @@ class Conteudo extends Component {
             posts: [
             ]
         }
+        this.buscaPosts = this.buscaPosts.bind(this);
     }
 
     componentDidMount(){
@@ -64,36 +66,45 @@ class Conteudo extends Component {
                 })
             })             
         })
+        this.buscaPosts();
+    }
 
-        let newPosts = this.state.posts;
+    buscaPosts(){
+        var url = window.location.href
+        var idTitulo = url.substring(url.lastIndexOf('?id=') + 4);
 
-        let banco = [
-            {nome: "Guilherme",
-            user: "gui_webeer",
-            conteudo: "Aqui ta o conteudo do post 1",
-            curtidas: 10,
-            comentarios: 10},
-            {nome: "William",
-            user: "ferris",
-            conteudo: "Aqui ta o conteudo do post 2",
-            curtidas: 20,
-            comentarios: 20},
-            {nome: "Mariana",
-            user: "maribove",
-            conteudo: "Aqui ta o conteudo do post 3",
-            curtidas: 30,
-            comentarios: 30}
-        ]
+        firebase.firestore().collection('posts')
+        .get()
+        .then((snapshot) => {
+            let posts = [];
 
-        for (let i = 0; i < 3; i++) {
-            newPosts.push(<Post nome={banco[i].nome} username={banco[i].user} conteudo={banco[i].conteudo} curtidas={banco[i].curtidas} comentarios={banco[i].comentarios}/>)
-          }
+            snapshot.forEach((doc) => {
+                if(doc.data().idConteudo == idTitulo){
+                    posts.push({
+                        usuario: doc.data().usuario,
+                        nome: doc.data().nome,
+                        desc: doc.data().desc,
+                        curtidas: doc.data().curtidas,
+                        idConteudo: doc.data().idConteudo,
+                        nomeConteudo: doc.data().nomeConteudo,
+                        comentarios: doc.data().comentarios,
+                        categoria: doc.data().categoria
+                    })
+                }
+            })
 
-        this.setState({
-            posts: newPosts
-        })
+            let foundPosts = [];
 
-        console.log(newPosts)
+            if(posts.length == 0) {
+                foundPosts.push(<NotFound/>)
+            } else {
+                posts.forEach((doc) => {
+                foundPosts.push(<Post usuario={doc.usuario} nome={doc.nome} categoria={doc.categoria}
+                                         desc={doc.desc} curtidas={doc.curtidas} 
+                                         nomeConteudo={doc.nomeConteudo} comentarios={doc.comentarios} />) })
+            }
+            this.setState({posts: foundPosts})
+        })   
     }
 
     render(){

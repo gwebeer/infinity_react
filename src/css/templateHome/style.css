@@ -654,6 +654,20 @@ nav ul ul li a {
 	font-weight: 600;
 	margin: 20px;
 }
+.post-not-found {
+	font-size: 20px;
+	text-align: center;
+	font-weight: 600;
+}
+.not-found-info {
+	float: left;
+	width: 150%;
+	padding: 5px 0 5px 0;
+	margin-bottom: 20px;
+}
+
+
+
 
 
 .nt-title h4 {

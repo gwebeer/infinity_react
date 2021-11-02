@@ -23,13 +23,13 @@ class Post extends Component {
         return(
             <div class="post-bar">
                 <div className="post-locator">
-                    <p> Comentando o filme Luca</p>
+                    <p> Comentando o {this.props.categoria} {this.props.nomeConteudo}</p>
                 </div>
                 <div class="post_topbar">
                     <div class="usy-dt">
                         <img src={usPic}/>
                         <div class="usy-name">
-                            <h3> {this.props.nome} | @{this.props.username} </h3>
+                            <h3> {this.props.nome} | @{this.props.usuario} </h3>
             
                         </div>
                     </div>
@@ -43,7 +43,7 @@ class Post extends Component {
                 </div>
             
                 <div class="job_descp">
-                    <p> {this.props.conteudo} </p>
+                    <p> {this.props.desc} </p>
                 </div>
                 <div class="job-status-bar">
                     <ul class="like-com">
