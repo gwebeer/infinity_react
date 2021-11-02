@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom';
 
 import '../../css/templateHome/animate.css';
 import '../../css/templateHome/bootstrap.min.css';
@@ -33,7 +34,7 @@ class Header extends Component {
                         <div class="search-bar">
                             <form>
                                 <input type="text" name="search" placeholder="Pesquisar Conteúdo..."/>
-                                <button type="submit"><i class="fas fa-search"></i></button>
+                                <Link to="/busca"> <button type="submit"><i class="fas fa-search"></i></button> </Link>
                             </form>
                         </div>{/* <!--barra de pesquisa acaba -->*/ }
                         
@@ -45,7 +46,7 @@ class Header extends Component {
                         {/* <!--usuário header--> */}
                         <div class="user-account">
                             <div class="user-info">
-                                <img src={user}/> <a href="">@usuário</a>
+                                <img src={user}/> <a href="">{this.props.username}</a>
                             </div>
                             
                         </div> {/* <!--usuário header acaba--> */}

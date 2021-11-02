@@ -5,6 +5,8 @@ import Feed from "./pages/feed";
 import FeedFilmes from "./pages/feedFilmes";
 import FeedLivros from "./pages/feedLivros";
 import FeedSeries from "./pages/feedSeries";
+import Conteudo from "./pages/conteudo";
+import Busca from "./pages/busca";
 
 const Routes = () => {
     return(
@@ -16,6 +18,10 @@ const Routes = () => {
             <Route exact path="/feed-filmes" component={FeedFilmes} />
             <Route exact path="/feed-livros" component={FeedLivros} />
             <Route exact path="/feed-series" component={FeedSeries} />
+
+            <Route exact path="/conteudo" component={Conteudo} />
+
+            <Route exact path="/busca" component={Busca} />
         </BrowserRouter>
     )
 }

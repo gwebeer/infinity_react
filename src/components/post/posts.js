@@ -22,6 +22,9 @@ class Post extends Component {
     render(){
         return(
             <div class="post-bar">
+                <div className="post-locator">
+                    <p> Comentando o filme Luca</p>
+                </div>
                 <div class="post_topbar">
                     <div class="usy-dt">
                         <img src={usPic}/>

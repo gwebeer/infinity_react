@@ -73,7 +73,7 @@ class FeedFilmes extends Component {
     render(){
         return(
             <div className="wrapper">   
-                <Header/>
+                <Header username="gui_webeer"/>
         
                 <main>
                     <div class="main-section">

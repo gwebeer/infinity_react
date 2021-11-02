@@ -6,10 +6,12 @@ import user from '../../images/user.png'
 import iconNome from '../../images/icon_nome.png'
 import usPic from '../../images/us-pic.png'
 import profileGuilherme from '../../images/userProfileGuilherme.jpeg'
+import luca from '../../images/fotofilme.jpg'
 
 import Post from '../../components/post/posts.js';
 import MenuUsuario from '../../components/menuUsuario';
 import Header from '../../components/header';
+import Titulo from '../../components/titulo';
 
 import '../../css/templateHome/animate.css';
 import '../../css/templateHome/bootstrap.min.css';
@@ -34,16 +36,33 @@ class Feed extends Component {
     constructor(props){
         super(props);
         this.state = {
+            userLog: "",
+            nameLog: "",
             posts: [
             ]
         }
+        
+        this.loadPosts = this.loadPosts.bind(this);
     }
 
     componentDidMount(){
 
+        this.loadPosts();
+
         firebase.auth().onAuthStateChanged((user)=>{
             if(!user){
                 window.location = '/login';
+            } else {
+                firebase.firestore().collection('users')
+                .doc(user.uid)    
+                .get()
+                .then((snapshot) => {
+                    this.setState({ userLog: snapshot.data().username})
+                    this.setState({ nameLog: snapshot.data().nome})
+                    })
+                .catch(() => {
+                    console.log("Algo deu errado!")
+                })
             }
         })
 
@@ -76,10 +95,27 @@ class Feed extends Component {
         })
     }
 
+    loadPosts(){
+        firebase.firestore().collection('posts')
+        .get()
+        .then((snapshot) => {
+            let lista = [];
+
+            snapshot.forEach((doc) => {
+                lista.push({
+                    id: doc.id,
+                    curtidas: doc.data().curtidas,
+                })
+            })
+
+            console.log(lista)
+        })
+    }
+
     render(){
         return(
             <div className="wrapper">   
-                <Header/>
+                <Header username={this.state.userLog}/>
         
                 <main>
                     <div class="main-section">
@@ -88,13 +124,13 @@ class Feed extends Component {
                                 <div class="row">
 
                                     { /* <!-- Menu Usuario --> */}
-                                    <MenuUsuario name="Guilherme" username="gui_webeer" />
+                                    <MenuUsuario name={this.state.nameLog} username={this.state.userLog} />
 
                                     { /* <!-- Seção de posts --> */}
                                     <div class="col-lg-6 col-md-8 no-pd">
                                         <div class="main-ws-sec">
 
-                                            <Locator nome="Guilherme" feed="filmes, séries e livros"/>
+                                            <Locator nome={this.state.nameLog} feed="filmes, séries e livros"/>
 
                                             <div class="posts-section">
 

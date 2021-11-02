@@ -18,7 +18,7 @@ class Locator extends Component {
     
     render(){
         return(
-            <div class="post-topbar">
+            <div class="post-topbar locator">
                 <p class="topWelcome"> Seja bem-vindo(a) {this.props.nome} </p>
                 <p> Você está acessando o feed de {this.props.feed}. </p>
             </div>
