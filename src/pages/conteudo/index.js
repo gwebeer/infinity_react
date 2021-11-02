@@ -36,6 +36,7 @@ class Conteudo extends Component {
             duracao: "",
             sinopse: "",
             seguidores: 0,
+            loading: true,
             posts: [
             ]
         }
@@ -43,6 +44,8 @@ class Conteudo extends Component {
     }
 
     componentDidMount(){
+
+        demoAsyncCall().then(() => this.setState({ loading: false }));
 
         var url = window.location.href
         var idTitulo = url.substring(url.lastIndexOf('?id=') + 4);
@@ -108,6 +111,22 @@ class Conteudo extends Component {
     }
 
     render(){
+
+        const { loading } = this.state;
+
+        if (loading) {
+            const teste =
+                <div className="wrapper">
+                    <Header username="gui_webeer"/>
+                    {/* <Helmet title="Entrevistas" /> */}
+                    <div style={{ textAlign: "center", marginTop: "10%" }}>
+                        {/* <img src={Logo} alt="Logo" width="10%" /> */}
+                        <h5 style={{ color: "#de4C4b" }}>Inifnity</h5>
+                    </div>
+                </div>
+            return teste; // render null when 
+        }
+
         return(
             <div className="wrapper">   
                 <Header username="gui_webeer"/>
@@ -156,3 +175,7 @@ class Conteudo extends Component {
 }
 
 export default Conteudo;
+
+function demoAsyncCall() {
+    return new Promise((resolve) => setTimeout(() => resolve(), 1000));
+}

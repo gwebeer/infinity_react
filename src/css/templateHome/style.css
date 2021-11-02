@@ -527,6 +527,16 @@ nav ul ul li a {
 	justify-content: center;
 	width: 75%;
 }
+.externa-postbar span {
+	padding-top: 10px;
+	color: rgb(163, 163, 163);
+	text-align: right;
+	width: 100%;
+}
+.range-post-bar {
+	color: gray;
+	text-align: right;
+}
 .externa-postbar-btn {
 	align-items: center;
 	display: flex;
@@ -556,6 +566,10 @@ nav ul ul li a {
 	font-size: 18px;
 	padding-top: 15px;
 	padding-left: 10px;
+	resize: none;
+}
+.forgot {
+	padding-right: 27%;
 }
 .interna{
 	background-color:#00b540;
@@ -665,7 +679,10 @@ nav ul ul li a {
 	padding: 5px 0 5px 0;
 	margin-bottom: 20px;
 }
-
+.bt-cadastrar {
+	margin-left: 10px;
+	width: 50%;
+}
 
 
 

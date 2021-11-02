@@ -109,18 +109,14 @@ class Login extends Component {
                                                         </div>
                                                         <div class="col-lg-12 no-pdd">
                                                             <div class="checky-sec">
-                                                                <div class="fgt-sec">
-                                                                    <input type="checkbox" name="cc" id="c1"/>
-                                                                    <label for="c1">
-                                                                        <span></span>
-                                                                    </label>
-                                                                    <small>Lembrar-me</small>
-                                                                </div>
-                                                                <a href="#" title="">Esqueceu a senha?</a>
+                                                                <a href="#" title="" className="forgot">Esqueceu a senha?</a>
                                                             </div>
                                                         </div>
                                                         <div class="col-lg-12 no-pdd">
-                                                            <button onClick={this.btEntrarClick}>Entrar</button>
+                                                            <div class="btns-signin">
+                                                                <button className="bt-entrar" onClick={this.btEntrarClick}>Entrar</button>
+                                                                <button className="bt-cadastrar" onClick={this.btCadastrarClick}>Cadastrar</button>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </form>

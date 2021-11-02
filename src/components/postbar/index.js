@@ -22,6 +22,7 @@ class Postbar extends Component {
         super(props);
         this.state = {
             post: "",
+            caracteres: 320,
         }
     }
 
@@ -34,7 +35,15 @@ class Postbar extends Component {
                     </div>
 
                     <div className="externa-postbar">
-                        <textarea placeholder="Digite seu comentário..." className="text-post"/>
+                        <textarea placeholder="Digite seu comentário..." className="text-post" 
+                        rows="7" maxLength="320" value={this.state.post} onChange={(e) => {
+                            let tamanho = this.state.post.length
+                            this.setState({post: e.target.value}, ()=>{
+                                let tamanho = this.state.post.length;
+                                this.setState({caracteres: 320 - tamanho})
+                            })
+                        }}/>
+                        <span> Restam {this.state.caracteres} caracteres </span>
                     </div>
 
                     <div className="externa-postbar-btn">
