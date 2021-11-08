@@ -29,6 +29,11 @@ class Conteudo extends Component {
     constructor(props){
         super(props);
         this.state = {
+            userLog: "",
+            nameLog: "",
+            userId: "",
+            listaSeguindo: [],
+
             nome: "",
             categoria: "",
             genero: "",
@@ -36,24 +41,65 @@ class Conteudo extends Component {
             duracao: "",
             sinopse: "",
             seguidores: 0,
+            
             loading: true,
             posts: [
             ]
         }
-        this.buscaPosts = this.buscaPosts.bind(this);
+
+        this.componentDidMount = () => {
+            // Página de espera
+            demoAsyncCall().then(() => this.setState({ loading: false }));
+
+            this.dbValidation();
+            
+            this.searchPosts();
+        }
+
+        this.componentDidUpdate = () => {
+            this.searchPosts();
+        }
+
+        this.searchPosts = this.searchPosts.bind(this);
+        this.titleId = this.titleId.bind(this);
+        this.dbValidation = this.dbValidation.bind(this);
+        this.carregarInformações = this.carregarInformações.bind(this);
     }
 
-    componentDidMount(){
 
-        demoAsyncCall().then(() => this.setState({ loading: false }));
-
+    titleId() {
         var url = window.location.href
         var idTitulo = url.substring(url.lastIndexOf('?id=') + 4);
+        return idTitulo;
+    }
 
+    async dbValidation() {
+        // Extrai id do conteudo da url
+        let idTitulo = this.titleId();
+
+        // Verifica se está logado
         firebase.auth().onAuthStateChanged((user)=>{
             if(!user){
+                // Se não tiver encaminha para login
                 window.location = '/login';
             }
+
+            // Retorna as informações relevantes do usuário logado
+            firebase.firestore().collection('users')
+            .doc(user.uid)
+            .get()
+            .then((snapshot) => {
+                // this.state.nomeLogado = snapshot.data().nome;
+                this.setState({
+                    nameLog: snapshot.data().nome,
+                    listaSeguindo: snapshot.data().seguindo,
+                    userLog: snapshot.data().username,
+                    userId: user.uid
+                }, () => {this.carregarInformações()})
+            })
+            
+
+            // Retorna as informações do conteúdo acessado
             firebase.firestore().collection('conteudos')
             .doc(idTitulo)
             .get()
@@ -67,20 +113,29 @@ class Conteudo extends Component {
                     sinopse: snapshot.data().sinopse,
                     seguidores: snapshot.data().seguidores
                 })
-            })             
+            })       
         })
-        this.buscaPosts();
     }
 
-    buscaPosts(){
-        var url = window.location.href
-        var idTitulo = url.substring(url.lastIndexOf('?id=') + 4);
+    carregarInformações() {
+        let idTitulo = this.titleId();
 
+        if (this.state.listaSeguindo.indexOf(idTitulo) > -1) {
+            this.setState({btSeguir: "Seguindo"})
+        }
+    }
+
+    async searchPosts(){
+        // Extrai id do conteudo da url
+        let idTitulo = this.titleId();
+
+        // Retorna itens da coleção posts
         firebase.firestore().collection('posts')
         .get()
         .then((snapshot) => {
             let posts = [];
 
+            // Percorre os posts adiciona ao array caso for relacionado
             snapshot.forEach((doc) => {
                 if(doc.data().idConteudo == idTitulo){
                     posts.push({
@@ -96,16 +151,20 @@ class Conteudo extends Component {
                 }
             })
 
+            // Define o array de componentes 'posts' montados
             let foundPosts = [];
 
+            // Se não encontrar posts, chama o componente <NotFound/>
             if(posts.length == 0) {
                 foundPosts.push(<NotFound/>)
-            } else {
+            } else { // Se encontrar, monta os posts com as informações do post
                 posts.forEach((doc) => {
                 foundPosts.push(<Post usuario={doc.usuario} nome={doc.nome} categoria={doc.categoria}
                                          desc={doc.desc} curtidas={doc.curtidas} 
                                          nomeConteudo={doc.nomeConteudo} comentarios={doc.comentarios} />) })
             }
+            
+            // Atualiza o state contendo posts montados
             this.setState({posts: foundPosts})
         })   
     }
@@ -129,7 +188,7 @@ class Conteudo extends Component {
 
         return(
             <div className="wrapper">   
-                <Header username="gui_webeer"/>
+                <Header username={this.state.userLog}/>
         
                 <main>
                     <div class="main-section">
@@ -138,10 +197,10 @@ class Conteudo extends Component {
                                 <div class="row">
 
                                     { /* <!-- Menu Usuario --> */}
-                                    <MenuUsuario name="Guilherme" username="gui_webeer" />
+                                    <MenuUsuario name={this.state.nameLog} username={this.state.userLog} />
 
                                     { /* <!-- Seção de posts --> */}
-                                    <div class="col-lg-6 col-md-8 no-pd">
+                                    <div class="col-lg-9 col-md-8 no-pd">
                                         <div class="main-ws-sec">
 
                                             <Titulo 
@@ -151,9 +210,16 @@ class Conteudo extends Component {
                                             ano={this.state.ano}
                                             duracao={this.state.duracao}
                                             sinopse={this.state.sinopse}
-                                            seguidores={this.state.seguidores}/>
+                                            seguidores={this.state.seguidores}
+                                            listaSeguindo={this.state.listaSeguindo}
+                                            userId={this.state.userId} />
 
-                                            <Postbar/>
+                                            <Postbar
+                                            categoria={this.state.categoria}
+                                            nomeConteudo={this.state.nome}
+                                            nomeUsuario={this.state.nameLog}
+                                            userId={this.state.userId}
+                                            userLog={this.state.userLog} />
 
                                             <div class="posts-section">
 

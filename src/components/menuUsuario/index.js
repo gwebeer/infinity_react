@@ -45,6 +45,13 @@ class MenuUsuario extends Component {
                                 <div class="usr-pic">
                                     <img src={profileGuilherme}/>
                                 </div>
+
+                                <div class="add-dp" id="OpenImgUpload">
+                                    <input type="file" id="file"/>
+                                    <label for="file"><i class="fas fa-camera"></i></label>		
+                                    
+                                    
+                                </div>
                             </div>
                             <div class="user-specs">
                                 <h3> {this.props.name} </h3>

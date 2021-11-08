@@ -16,6 +16,8 @@ import '../../css/templateHome/lib/slick/slick-theme.css';
 
 import profile from '../../images/userProfileGuilherme.jpeg'
 
+import firebase from 'firebase';
+
 class Postbar extends Component {
     
     constructor(props){
@@ -24,6 +26,33 @@ class Postbar extends Component {
             post: "",
             caracteres: 320,
         }
+
+        this.fAddDatabase = this.fAddDatabase.bind(this);
+        this.titleId = this.titleId.bind(this);
+    }
+
+    titleId() {
+        var url = window.location.href
+        var idTitulo = url.substring(url.lastIndexOf('?id=') + 4);
+        return idTitulo;
+    }
+
+    fAddDatabase() {
+        firebase.firestore().collection('posts')
+        .add({
+            categoria: this.props.categoria,
+            comentarios: 0,
+            curtidas: 0,
+            desc: this.state.post,
+            idConteudo: this.titleId(),
+            nome: this.props.nomeUsuario,
+            nomeConteudo: this.props.nomeConteudo,
+            userId: this.props.userId,
+            usuario: this.props.userLog,
+        })
+        .then(
+            this.setState({post: "", caracteres: 320})
+        )
     }
 
     render(){
@@ -49,7 +78,7 @@ class Postbar extends Component {
                     <div className="externa-postbar-btn">
                         <div className="post-st">
                             <ul>
-                                <li><a className="post-jb active" href="#" title="">Publicar!</a></li>
+                                <li><a className="post-jb active" onClick={this.fAddDatabase} >Publicar!</a></li>
                             </ul>
                         </div>
                     </div>
