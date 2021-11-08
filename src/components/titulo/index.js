@@ -116,7 +116,7 @@ class Titulo extends Component {
                     <div className="externa-title">
                         <div className="post-st">
                             <ul id="btn-follow">
-                                <li><a className="post-jb active" onClick={this.btFollowClick}>{this.state.seguir}</a></li>
+                                <li><a className="post-jb active btnSeguir" onClick={this.btFollowClick}>{this.state.seguir}</a></li>
                             </ul>
                             <p className="followers"> {this.state.seguidores} seguidores </p>
                         </div>
