@@ -29,6 +29,7 @@ class Profile extends Component {
             userLog: "",
             nameLog: "",
             listaSeguindo: "",
+            userId: "",
 
             posts: [
             ],
@@ -81,7 +82,8 @@ class Profile extends Component {
                     this.setState({ 
                         userLog: snapshot.data().username,
                         nameLog: snapshot.data().nome,
-                        listaSeguindo: snapshot.data().seguindo
+                        listaSeguindo: snapshot.data().seguindo,
+                        userId: user.uid
                     }, this.loadPosts);                    
                     })
                 .catch(() => {
@@ -112,7 +114,8 @@ class Profile extends Component {
                         idConteudo: doc.data().idConteudo,
                         nomeConteudo: doc.data().nomeConteudo,
                         comentarios: doc.data().comentarios,
-                        categoria: doc.data().categoria
+                        categoria: doc.data().categoria,
+                        postId: doc.id
                     })
                 }
             })
@@ -125,8 +128,8 @@ class Profile extends Component {
                 foundPosts.push(<NotFound/>)
             } else { // Se encontrar, monta os posts com as informações do post
                 posts.forEach((doc) => {
-                foundPosts.push(<Post usuario={doc.usuario} nome={doc.nome} categoria={doc.categoria}
-                                         desc={doc.desc} curtidas={doc.curtidas} 
+                foundPosts.push(<Post usuario={doc.usuario} nome={doc.nome} categoria={doc.categoria} userId={this.state.userId}
+                                         desc={doc.desc} curtidas={doc.curtidas} postId={doc.postId}
                                          nomeConteudo={doc.nomeConteudo} comentarios={doc.comentarios} />) })
             }
             
