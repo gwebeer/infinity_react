@@ -25,35 +25,25 @@ class Preview extends Component {
         super(props);
         this.state = {
             seguir: "",
-
             seguidores: props.seguidores,
+            idConteudo: props.idConteudo,
 
-            listaSeguindo: props.listaSeguindo
+            listaSeguindo: props.listaSeguindo,
         }
-        
-        this.btFollowClick = this.btFollowClick.bind(this);
-        this.followingListUpdate = this.followingListUpdate.bind(this);
+
+        this.startState = this.startState.bind(this);
     }
 
-    btFollowClick() {
+    startState() {
         if(this.state.listaSeguindo.indexOf(this.props.idConteudo) > -1) {
-            let index = this.state.listaSeguindo.indexOf(this.props.idConteudo)
-            this.state.listaSeguindo.splice(index, 1)
-            this.unfollow();
+            console.log(true)
+            console.log(this.state.listaSeguindo.indexOf(this.props.idConteudo) > -1)
         } else {
-            this.state.listaSeguindo.push(this.props.idConteudo)
-            this.follow();
+            console.log(false)
+            console.log(this.state.listaSeguindo.indexOf(this.props.idConteudo) > -1)
         }
-        this.followingListUpdate();
     }
 
-    followingListUpdate() {
-        firebase.firestore().collection('users')
-        .doc(this.props.userId)
-        .update({
-            seguindo: this.state.listaSeguindo
-        })
-    }
 
     render(){
         return(
@@ -73,9 +63,9 @@ class Preview extends Component {
                     <div className="externa-follow-preview">
                         <div className="post-st">
                             <ul id="btn-follow-preview">
-                                <li><a className="post-jb active" onClick={this.btFollowClick}>Seguir</a></li>
+                                <li><a className="post-jb active"> {this.state.seguir} </a></li>
                             </ul>
-                            <p className="followers"> {this.props.seguidores} seguidores </p>
+                            <p className="followers"> {this.state.seguidores} seguidores </p>
                         </div>
                     </div>
                 </div>

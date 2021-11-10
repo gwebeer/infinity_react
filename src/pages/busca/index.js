@@ -30,6 +30,9 @@ class Busca extends Component {
         this.state = {
             userLog: "",
             nameLog: "",
+            userId: "",
+
+            listaSeguindo: "",
 
             foundContents: []
         }
@@ -66,7 +69,7 @@ class Busca extends Component {
                         userLog: snapshot.data().username,
                         nameLog: snapshot.data().nome,
                         listaSeguindo: snapshot.data().seguindo,
-                        userId: ""
+                        userId: user.uid
                     }, this.searchAll);                    
                     })
                 .catch(() => {
@@ -96,9 +99,9 @@ class Busca extends Component {
             // Passa as informações para montar o componente <Preview/>
             let foundPosts = [];
             lista.forEach((doc) => {
-                foundPosts.push(<Preview nome={doc.nome} categoria={doc.categoria} 
+                foundPosts.push(<Preview nome={doc.nome} categoria={doc.categoria} userId={this.state.userId} 
                                          sinopse={doc.sinopse} seguidores={doc.seguidores} 
-                                         capa={doc.nome} idConteudo={doc.id} />)
+                                         idConteudo={doc.id} listaSeguindo={this.state.listaSeguindo} />)
             })
 
             // Atualiza o state com todos os posts que foram encontrados
@@ -120,7 +123,7 @@ class Busca extends Component {
                                 <div class="row">
 
                                 { /* Chama o componente <MenuUsuario/> com props */}
-                                    <MenuUsuario name={this.state.nameLog} username={this.state.userLog} />
+                                    <MenuUsuario name={this.state.nameLog} username={this.state.userLog} userId={this.state.userId}/>
 
                                     <div class="col-lg-9 col-md-8 no-pd">
                                         <div class="main-ws-sec">

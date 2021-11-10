@@ -5,11 +5,9 @@ import '../../css/templateHome/bootstrap.min.css';
 import '../../css/templateHome/jquery.mCustomScrollbar.min.css'
 import '../../css/templateHome/responsive.css';
 import '../../css/templateHome/style.css';
-
 import '../../css/templateHome/cssFonts/line-awesome.css'
 import '../../css/templateHome/cssFonts/line-awesome-font-awesome.min.css'
 import '../../css/templateHome/cssFonts/font-awesome.min.css'
-
 import '../../css/templateHome/vendor/fontawesome-free/css/all.min.css';
 import '../../css/templateHome/lib/slick/slick.css';
 import '../../css/templateHome/lib/slick/slick-theme.css';
@@ -26,8 +24,18 @@ class MenuUsuario extends Component {
         super(props);
         this.state = {
         }
-
+        
+        this.fileUpload = this.fileUpload.bind(this);
         this.deslogar = this.deslogar.bind(this);
+    }
+
+    fileUpload(e) {
+        let arquivo = e.target.files[0];
+
+        firebase.storage().ref("usuario").child(this.props.userId).put(arquivo)
+        .then((e) => {
+            console.log("Upload feito!");
+        });
     }
 
     deslogar(){
@@ -43,11 +51,11 @@ class MenuUsuario extends Component {
                         <div class="user-profile">
                             <div class="username-dt">
                                 <div class="usr-pic">
-                                    <img src={profileGuilherme}/>
+                                    <img src={this.props.url}/>
                                 </div>
 
                                 <div class="add-dp" id="OpenImgUpload">
-                                    <input type="file" id="file"/>
+                                    <input type="file" id="file" onChange={(e) => {this.fileUpload(e);}} />
                                     <label for="file"><i class="fas fa-camera"></i></label>		
                                     
                                     
