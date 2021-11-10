@@ -109,7 +109,7 @@ class Titulo extends Component {
                 
                 <div className="linha">
                     <div className="externa-title">
-                        <h3 className="titulo-conteudo">{this.props.nome}</h3>
+                        <h3 className="titulo-conteudo2">{this.props.nome}</h3>
                         <h4 className="categoria">{this.props.categoria}</h4>
                     </div>
 
