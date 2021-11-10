@@ -23,31 +23,18 @@ class MenuUsuario extends Component {
     constructor(props){
         super(props);
         this.state = {
-            file: "",
-            userId: this.props.userId,
         }
-
-        this.fileDownload();
-
-        this.deslogar = this.deslogar.bind(this);
+        
         this.fileUpload = this.fileUpload.bind(this);
-        this.fileDownload = this.fileDownload.bind(this);
+        this.deslogar = this.deslogar.bind(this);
     }
 
     fileUpload(e) {
         let arquivo = e.target.files[0];
 
-        firebase.storage().ref("usuario").child(this.state.userId).put(arquivo)
+        firebase.storage().ref("usuario").child(this.props.userId).put(arquivo)
         .then((e) => {
             console.log("Upload feito!");
-            this.fileDownload();
-        });
-    }
-
-    fileDownload() {
-        firebase.storage().ref("usuario").child(this.props.userId).getDownloadURL()
-        .then((url)=>{
-            this.setState({file: url});
         });
     }
 
@@ -64,11 +51,11 @@ class MenuUsuario extends Component {
                         <div class="user-profile">
                             <div class="username-dt">
                                 <div class="usr-pic">
-                                    <img src={this.state.file}/>
+                                    <img src={this.props.url}/>
                                 </div>
 
                                 <div class="add-dp" id="OpenImgUpload">
-                                    <input type="file" id="file" onChange={(e) => {this.fileUpload(e)}} />
+                                    <input type="file" id="file" onChange={(e) => {this.fileUpload(e);}} />
                                     <label for="file"><i class="fas fa-camera"></i></label>		
                                     
                                     

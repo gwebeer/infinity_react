@@ -31,10 +31,6 @@ class Preview extends Component {
             listaSeguindo: props.listaSeguindo,
         }
 
-        this.componentDidMount = () => {
-            this.setState({listaSeguindo: this.props.listaSeguindo}, this.startState())
-        }
-
         this.startState = this.startState.bind(this);
     }
 
