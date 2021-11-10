@@ -73,19 +73,19 @@ class MenuUsuario extends Component {
                             </li>
 
                             <li>
-                                <Link to="/"> <a> Home </a> </Link>
+                                <Link to="/"> <a> <i class="fas fa-home"></i> Home </a> </Link>
                             </li>
                     
                             <li>
-                                <Link to="/feed-livros"> <a> Feed Livros </a> </Link>
+                                <Link to="/feed-livros"> <a> <i class="fas fa-book-open"></i> Feed Livros </a> </Link>
                             </li>
 
                             <li>
-                                <Link to="/feed-series"> <a> Feed Séries </a> </Link>
+                                <Link to="/feed-series"> <a> <i class="fas fa-video"></i> Feed Séries </a> </Link>
                             </li>
                             
                             <li>
-                                <Link to="/feed-filmes"> <a> Feed Filmes </a> </Link>
+                                <Link to="/feed-filmes"> <a> <i class="fas fa-film"></i> Feed Filmes </a> </Link>
                             </li>
 
                             <li>

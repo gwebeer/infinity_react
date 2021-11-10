@@ -96,6 +96,7 @@ body {
 	overflow-x: hidden;
 	font-weight: 400;
 	background-color: #f2f2f2;
+	color: white;
 }
 ol, ul {
 	list-style: none;
@@ -559,6 +560,21 @@ nav ul ul li a {
 	font-weight: 800;
 	padding-top: 10px;
 }
+
+a:hover {
+	color: #f46e28;
+}
+
+.titulo-conteudo2 {
+	font-size: 24px;
+	font-weight: 800;
+	padding-top: 10px;
+	color: black;
+}
+
+
+
+
 .text-post {
     width: 100%;
 	border: none;
@@ -576,6 +592,7 @@ nav ul ul li a {
 }
 .categoria {
 	margin: 10px 0 0 0;
+	color: black;
 }
 .linha {
 	display: flex;
@@ -591,6 +608,7 @@ nav ul ul li a {
 }
 .info label {
 	font-weight: 600;
+	color: black;
 }
 .info {
 	padding-left: 30px;
@@ -642,6 +660,11 @@ nav ul ul li a {
 	align-items: center;
 	justify-content: center;
 	width: 55%;
+
+}
+
+.externa-info-preview a :hover {
+	color: #f46e28;
 }
 .info-preview-p{
 	margin-top: 2px;
@@ -651,6 +674,7 @@ nav ul ul li a {
 .info-preview-label {
 	font-weight: 600;
 	margin-top: 5px;
+	color: black;
 }
 .externa-follow-preview {
 	align-items: center;
@@ -662,11 +686,13 @@ nav ul ul li a {
 }
 #btn-follow-preview {
 	text-align: center;
+	cursor: pointer;
 }
 .busca-title {
 	font-size: 22px;
 	font-weight: 600;
 	margin: 20px;
+	color: black;
 }
 .post-not-found {
 	font-size: 20px;
@@ -1162,8 +1188,10 @@ main {
 .post-st ul li a:hover,
 .post-st ul li a.active {
 	background-color: #f46e28;
-	color: #fff;
+	color: white;
 }
+
+
 
 
 /* ================ posts-section ================== */
@@ -2666,59 +2694,6 @@ footer {
 	font-weight: 600;
 }
 
-/* ================== social_links ============= */
-
-.social_links {
-	float: left;
-	width: 100%;
-	text-align: left;
-}
-.social_links li {
-	float: left;
-	width: 100%;
-	padding: 15px 15px;
-	border-bottom: 1px solid #e5e5e5;
-}
-.social_links li a {
-	float: left;
-	width: 100%;
-	color: #51a5fb;
-	font-size: 14px;
-    font-weight: 400;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-}
-.social_links li a i {
-	padding-right: 5px;
-	font-size: 20px;
-	position: relative;
-	top: 3px;
-}
-.la-globe {
-	color: #51a5fb;
-}
-.fa-facebook-square {
-	color: #3b5998;
-}
-.fa-google-plus-square {
-	color: #e2665c;
-}
-.fa-twitter {
-	color: #1da1f2;
-}
-.fa-behance-square {
-	color: #1769ff;
-}
-.fa-pinterest {
-	color: #bd081c;
-}
-.fa-instagram {
-	color: #833ab4;
-}
-.fa-youtube {
-	color: #cd201f;
-}
 
 
 /* ================= user-tab-sec ============== */
@@ -3304,7 +3279,7 @@ footer {
 	font-size: 20px;
 }
 a:hover {
-	color: initial;
+	color: #f2f2f2
 }
 
 .pf-img {
@@ -3634,12 +3609,7 @@ a:hover {
 	font-family: Raleway-Medium, sans-serif ;
     background-color: #f46e28;
 }
-.message-us {
-	background-color: #e44d3a;
-}
-.hire-us {
-	background-color: #51a5fb;
-}
+
 .company_profile_info > a {
 	display: inline-block;
 	color: #000000;
@@ -6385,6 +6355,9 @@ ul#myTab {
     color: #666666;
 }
 
-.btSeguir {
+
+.btSeguir{
 	cursor: pointer;
 }
+
+
