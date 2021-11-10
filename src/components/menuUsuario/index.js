@@ -5,11 +5,9 @@ import '../../css/templateHome/bootstrap.min.css';
 import '../../css/templateHome/jquery.mCustomScrollbar.min.css'
 import '../../css/templateHome/responsive.css';
 import '../../css/templateHome/style.css';
-
 import '../../css/templateHome/cssFonts/line-awesome.css'
 import '../../css/templateHome/cssFonts/line-awesome-font-awesome.min.css'
 import '../../css/templateHome/cssFonts/font-awesome.min.css'
-
 import '../../css/templateHome/vendor/fontawesome-free/css/all.min.css';
 import '../../css/templateHome/lib/slick/slick.css';
 import '../../css/templateHome/lib/slick/slick-theme.css';
@@ -25,9 +23,32 @@ class MenuUsuario extends Component {
     constructor(props){
         super(props);
         this.state = {
+            file: "",
+            userId: this.props.userId,
         }
 
+        this.fileDownload();
+
         this.deslogar = this.deslogar.bind(this);
+        this.fileUpload = this.fileUpload.bind(this);
+        this.fileDownload = this.fileDownload.bind(this);
+    }
+
+    fileUpload(e) {
+        let arquivo = e.target.files[0];
+
+        firebase.storage().ref("usuario").child(this.state.userId).put(arquivo)
+        .then((e) => {
+            console.log("Upload feito!");
+            this.fileDownload();
+        });
+    }
+
+    fileDownload() {
+        firebase.storage().ref("usuario").child(this.props.userId).getDownloadURL()
+        .then((url)=>{
+            this.setState({file: url});
+        });
     }
 
     deslogar(){
@@ -43,11 +64,11 @@ class MenuUsuario extends Component {
                         <div class="user-profile">
                             <div class="username-dt">
                                 <div class="usr-pic">
-                                    <img src={profileGuilherme}/>
+                                    <img src={this.state.file}/>
                                 </div>
 
                                 <div class="add-dp" id="OpenImgUpload">
-                                    <input type="file" id="file"/>
+                                    <input type="file" id="file" onChange={(e) => {this.fileUpload(e)}} />
                                     <label for="file"><i class="fas fa-camera"></i></label>		
                                     
                                     
