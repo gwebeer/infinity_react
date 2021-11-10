@@ -31,17 +31,78 @@ class Preview extends Component {
             listaSeguindo: props.listaSeguindo,
         }
 
+        this.componentDidMount = () => {
+            this.startState()
+        }
+
         this.startState = this.startState.bind(this);
+        this.btFollowClick = this.btFollowClick.bind(this);
+        this.followingListUpdate = this.followingListUpdate.bind(this);
+        this.follow = this.follow.bind(this);
+        this.unfollow = this.unfollow.bind(this);
     }
 
+
     startState() {
-        if(this.state.listaSeguindo.indexOf(this.props.idConteudo) > -1) {
-            console.log(true)
-            console.log(this.state.listaSeguindo.indexOf(this.props.idConteudo) > -1)
+        firebase.firestore().collection('users')
+        .doc("3hR4mxD5ORWzjasgCy11qwBIi0K2")
+        .get()
+        .then((snapshot)=>{
+            this.setState({listaSeguindo: snapshot.data().seguindo}, () => {
+                if(this.state.listaSeguindo.indexOf(this.props.idConteudo) > -1) {
+                    this.setState({seguir: "Seguindo"})
+                } else {
+                    this.setState({seguir: "Seguir"})
+                }
+            })
+        })
+    }
+
+    btFollowClick() {
+        if(this.state.seguir === "Seguir") {
+            this.setState({seguir: "Seguindo"})
+            this.state.listaSeguindo.push(this.props.idConteudo)
+            console.log(this.state.listaSeguindo)
+            this.follow();
         } else {
-            console.log(false)
-            console.log(this.state.listaSeguindo.indexOf(this.props.idConteudo) > -1)
+            this.setState({seguir: "Seguir"})
+
+            let index = this.state.listaSeguindo.indexOf(this.props.idConteudo)
+            this.state.listaSeguindo.splice(index, 1)
+            console.log(this.state.listaSeguindo)
+            this.unfollow();
         }
+        this.followingListUpdate();
+    }
+
+    followingListUpdate() {
+        firebase.firestore().collection('users')
+        .doc(this.props.userId)
+        .update({
+            seguindo: this.state.listaSeguindo
+        })
+    }
+
+    follow() {
+        this.setState({seguidores: this.state.seguidores + 1}, () => {
+            firebase.firestore().collection('conteudos')
+            .doc(this.props.idConteudo)
+            .update({
+            seguidores: this.state.seguidores
+            })
+        })
+        
+        
+    }
+
+    unfollow() {
+        this.setState({seguidores: this.state.seguidores - 1}, () => {
+            firebase.firestore().collection('conteudos')
+            .doc(this.props.idConteudo)
+            .update({
+                seguidores: this.state.seguidores
+            })
+        })
     }
 
 
@@ -63,7 +124,7 @@ class Preview extends Component {
                     <div className="externa-follow-preview">
                         <div className="post-st">
                             <ul id="btn-follow-preview">
-                                <li><a className="post-jb active"> {this.state.seguir} </a></li>
+                                <li><a onClick={()=>{this.btFollowClick()}} className="post-jb active"> {this.state.seguir} </a></li>
                             </ul>
                             <p className="followers"> {this.state.seguidores} seguidores </p>
                         </div>
