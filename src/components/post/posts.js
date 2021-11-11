@@ -39,6 +39,7 @@ class Post extends Component {
     }
 
     imgPost() {
+        console.log(this.props.userId)
         firebase.storage().ref('usuario').child(this.props.userId).getDownloadURL()
         .then((url) => {
             this.setState({url: url})

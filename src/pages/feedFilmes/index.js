@@ -101,7 +101,8 @@ class FeedFilmes extends Component {
                         idConteudo: doc.data().idConteudo,
                         nomeConteudo: doc.data().nomeConteudo,
                         comentarios: doc.data().comentarios,
-                        categoria: doc.data().categoria
+                        categoria: doc.data().categoria,
+                        userPost: doc.data().userId
                     })
                 }
             })
@@ -114,7 +115,7 @@ class FeedFilmes extends Component {
                 foundPosts.push(<NotFound/>)
             } else { // Se encontrar, monta os posts com as informações do post
                 posts.forEach((doc) => {
-                    foundPosts.push(<Post usuario={doc.usuario} nome={doc.nome} categoria={doc.categoria} userId={this.state.userId}
+                    foundPosts.push(<Post usuario={doc.usuario} nome={doc.nome} categoria={doc.categoria} userId={doc.userPost}
                         desc={doc.desc} curtidas={doc.curtidas} postId={doc.postId}
                         nomeConteudo={doc.nomeConteudo} comentarios={doc.comentarios} />) })
             }

@@ -36,11 +36,14 @@ class FollowingItem extends Component {
 
             seguidores: props.seguidores,
 
-            listaSeguindo: props.listaSeguindo
+            listaSeguindo: props.listaSeguindo,
+
+            url: "",
         }
 
         this.componentDidMount = () => {
-            this.teste()
+            this.imagem();
+            this.teste();
         }
         
         this.follow = this.follow.bind(this);
@@ -48,6 +51,14 @@ class FollowingItem extends Component {
         this.btFollowClick = this.btFollowClick.bind(this);
         this.followingListUpdate = this.followingListUpdate.bind(this);
         this.teste = this.teste.bind(this);
+        this.imagem = this.imagem.bind(this);
+    }
+
+    imagem() {
+        firebase.storage().ref('conteudos').child(this.props.idConteudo).getDownloadURL()
+        .then((url) => {
+            this.setState({url: url})
+        })
     }
 
     teste() {
@@ -112,7 +123,7 @@ class FollowingItem extends Component {
             <div class="col-lg-4 col-md-6 col-sm-6">
                 <div class="company_profile_info">
                     <div class="company-up-info">
-                        <img src={you}/>
+                        <img src={this.state.url}/>
                         <h3> {this.props.nome} </h3>
                         <h3>  {this.props.categoria} </h3>
                         <h4> {this.state.seguidores} seguidores</h4>
