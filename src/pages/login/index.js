@@ -80,7 +80,7 @@ class Login extends Component {
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <div class="cmp-info">
-                                            <div class="cm-logo">
+                                            <div class="cm-logo1">
                                                 <img src={infinityLogo}/>
                                                 <p>Faça parte das comunidades dos conteúdos que você mais gosta! Junte-se a outros usuários na discussão de filmes, séries e livros!</p>
                                             </div>	
@@ -97,14 +97,14 @@ class Login extends Component {
                                                             <div class="sn-field">
                                                                 <input type="text" name="username" placeholder="E-mail" name="username"
                                                                         value={this.state.form.username} onChange={this.loginData} />
-                                                                <i class="la la-user"></i>
+                                                                <i class="fas fa-user"></i>
                                                             </div>
                                                         </div>
                                                         <div class="col-lg-12 no-pdd">
                                                             <div class="sn-field">
                                                                 <input type="password" name="password" placeholder="Senha" name="password" 
                                                                         value={this.state.form.password} onChange={this.loginData} />
-                                                                <i class="la la-lock"></i>
+                                                                <i class="fas fa-lock"></i>
                                                             </div>
                                                         </div>
                                                         <div class="col-lg-12 no-pdd">
@@ -124,8 +124,8 @@ class Login extends Component {
                                                 <div class="login-resources">
                                                     <h4>Ou entre com suas redes sociais</h4>
                                                     <ul>
-                                                        <li><a href="#" title="" class="fb"><i class="fa fa-facebook"></i>Login Via Facebook</a></li>
-                                                        <li><a href="#" title="" class="tw"><i class="fa fa-twitter"></i>Login Via Twitter</a></li>
+                                                        <li><a href="#" title="" class="fb"><i class="fa fa-facebook"></i>Logar Via Facebook</a></li>
+                                                        <li><a href="#" title="" class="tw"><i class="fa fa-twitter"></i>Logar Via Twitter</a></li>
                                                     </ul>
                                                 </div>
 
