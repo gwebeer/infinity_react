@@ -65,7 +65,7 @@ class Header extends Component {
                         
                         {/* Logo pequena na searchBar */}
                         <div class="logo">
-                            <a href="paginainicial-feed.html" title=""><img src={iconBarra}/></a>
+                            <a href="paginainicial-feed.html" title=""><img className="logoheader" src={iconBarra}/></a>
                         </div>
                         
                         {/* Início da searchBar */}
