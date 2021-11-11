@@ -698,6 +698,7 @@ a:hover {
 	font-size: 20px;
 	text-align: center;
 	font-weight: 600;
+	color: #000000;
 }
 .not-found-info {
 	float: left;
@@ -708,6 +709,7 @@ a:hover {
 .bt-cadastrar {
 	margin-left: 10px;
 	width: 50%;
+
 }
 .tab-feed li {
 	cursor: pointer;
@@ -1986,7 +1988,7 @@ main {
 
 .sign-in {
 	background-color: #f46e28;
-	height: 100vh;
+	height: 150vh;
 }
 .sign-in-page {
 	float: left;
@@ -2065,6 +2067,7 @@ main {
 	float: left;
 	width: 100%;
 	padding-left: 45px;
+	padding-top: 125px;
 	margin-bottom: 120px;
 }
 .cm-logo img {
@@ -2072,13 +2075,37 @@ main {
 }
 .cm-logo > p {
 	color: #666666;
+	font-family: Raleway-Medium, sans-serif;
     font-size: 14px;
-    font-weight: 400;
+    font-weight: 600;
     line-height: 24px;
     float: left;
     width: 100%;
 }
 .cmp-info > img {
+	width: 100%;
+	padding-left: 10px;
+}
+
+.cm-logo1 {
+	float: left;
+	width: 100%;
+	padding-left: 45px;
+	margin-bottom: 120px;
+}
+.cm-logo1 img {
+	margin-bottom: 30px;
+}
+.cm-logo1 > p {
+	color: #666666;
+	font-family: Raleway-Medium, sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 24px;
+    float: left;
+    width: 100%;
+}
+.cmp-info1 > img {
 	width: 100%;
 	padding-left: 10px;
 }
@@ -2119,6 +2146,24 @@ main {
 	border-radius: 100px;
 	background-color: #fff;
 }
+.instructions-sign-up h3 {
+	color: #000000;
+	font-size: 18px;
+	font-weight: 600;
+	position: relative;
+	padding-bottom: 10px;
+	margin-bottom: 30px;
+}
+.instructions-sign-up h3:before {
+	content: '';
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 30px;
+	height: 2px;
+	background-color: #f46e28;
+}
+
 .sign-control {
 	float: left;
 	width: 100%;
@@ -2243,14 +2288,16 @@ main {
 }
 .sign_in_sec form button {
 	color: #ffffff;
-	font-size: 16px;
+	font-size: 18px;
 	background-color: #f46e28;
 	padding: 12px 27px;
 	border:0;
 	font-weight: 500;
 	margin-top: 30px;
 	cursor: pointer;
+	margin-bottom: 30px;
 }
+
 .checky-sec {
 	float: left;
 	width: 100%;
@@ -3571,6 +3618,7 @@ a:hover {
 	-o-border-radius: 100px;
 	border-radius: 100px;
 	height: 90px;
+	width: 90px;
 	object-fit: cover;
 }
 .company-up-info h3 {

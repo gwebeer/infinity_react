@@ -117,7 +117,7 @@ class SignUp extends Component {
                                     <div class="col-lg-6">
                                         <div class="login-sec">
                                             <div class="sign_in_sec current" id="tab-1">
-                                                <h4 class="instructions-sign-up">Seja bem-vindo(a)! Para se cadastrar, preencha as informações abaixo</h4>
+                                                <h3 class="instructions-sign-up">Cadastro</h3>
                                                 <div class="dff-tab current" id="tab-3">
                                                     <form action="javascript:void(0);">
                                                         <div class="row">
@@ -126,7 +126,7 @@ class SignUp extends Component {
                                                                 <p>Seu nome completo: </p>
                                                                 <div class="sn-field">
                                                                     <input type="text" name="nome" placeholder="Ex: João Silva" value={this.state.form.nome} onChange={this.dadosCadastro}/>
-                                                                    <i class="la la-user"></i>
+                                                                    <i class="fas fa-user"></i>
                                                                 </div>
                                                             </div>
 
@@ -134,7 +134,7 @@ class SignUp extends Component {
                                                                 <p>Sua data de nascimento: </p>
                                                                 <div class="sn-field">
                                                                     <input type="date" name="birthDate" value={this.state.form.birthDate} onChange={this.dadosCadastro}/>
-                                                                    <i class="la la-user"></i>
+                                                                    <i class="fas fa-calendar-week"></i>
                                                                 </div>
                                                             </div>
 
@@ -142,7 +142,7 @@ class SignUp extends Component {
                                                                 <p>Seu melhor e-mail: </p>
                                                                 <div class="sn-field">
                                                                     <input type="text" name="email" placeholder="Ex: exemplo@mail.com" value={this.state.form.email} onChange={this.dadosCadastro}/>
-                                                                    <i class="la la-globe"></i>
+                                                                    <i class="fas fa-envelope"></i>
                                                                 </div>
                                                             </div>
 
@@ -150,7 +150,7 @@ class SignUp extends Component {
                                                                 <p>Escolha um nome de usuario: </p>
                                                                 <div class="sn-field">
                                                                     <input type="text" name="username" placeholder="Ex: joao_silva" value={this.state.form.username} onChange={this.dadosCadastro}/>
-                                                                    <i class="la la-globe"></i>
+                                                                    <i class="fas fa-user"></i>
                                                                 </div>
                                                             </div>
 
@@ -158,7 +158,7 @@ class SignUp extends Component {
                                                                 <p>Sua senha: </p>
                                                                 <div class="sn-field">
                                                                     <input type="password" name="password" placeholder="Senha" value={this.state.form.password} onChange={this.dadosCadastro}/>
-                                                                    <i class="la la-lock"></i>
+                                                                    <i class="fas fa-lock"></i>
                                                                 </div>
                                                             </div>
 
@@ -166,7 +166,7 @@ class SignUp extends Component {
                                                                 <p>Confirme sua senha: </p>
                                                                 <div class="sn-field">
                                                                     <input type="password" name="checkPassword" placeholder="Confirme sua senha" value={this.state.form.checkPassword} onChange={this.dadosCadastro}/>
-                                                                    <i class="la la-lock"></i>
+                                                                    <i class="fas fa-lock"></i>
                                                                 </div>
                                                             </div>
 
