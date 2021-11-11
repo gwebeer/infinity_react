@@ -30,6 +30,7 @@ class Profile extends Component {
             nameLog: "",
             listaSeguindo: "",
             userId: "",
+            url: "",
 
             posts: [
             ],
@@ -79,6 +80,12 @@ class Profile extends Component {
                 .doc(user.uid)    
                 .get()
                 .then((snapshot) => {
+
+                    firebase.storage().ref('usuario').child(user.uid).getDownloadURL()
+                    .then((url) => {
+                        this.setState({url: url})
+                    })
+
                     this.setState({ 
                         userLog: snapshot.data().username,
                         nameLog: snapshot.data().nome,
@@ -152,7 +159,7 @@ class Profile extends Component {
                                 <div class="row">
 
                                     { /* Chama o componente <MenuUsuario/> com props */}
-                                    <MenuUsuario name={this.state.nameLog} username={this.state.userLog} />
+                                    <MenuUsuario name={this.state.nameLog} username={this.state.userLog} userId={this.state.userId} url={this.state.url} />
 
                                     <div class="col-lg-9 col-md-8 no-pd">
                                         <div class="main-ws-sec">

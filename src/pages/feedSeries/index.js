@@ -28,6 +28,8 @@ class FeedSeries extends Component {
             userLog: "",
             nameLog: "",
             listaSeguindo: [],
+            userId: "",
+            url: "",
 
             posts: [
             ]
@@ -54,10 +56,17 @@ class FeedSeries extends Component {
                 .doc(user.uid)    
                 .get()
                 .then((snapshot) => {
+
+                    firebase.storage().ref('usuario').child(user.uid).getDownloadURL()
+                    .then((url) => {
+                        this.setState({url: url})
+                    })
+
                     this.setState({ 
                         userLog: snapshot.data().username,
                         nameLog: snapshot.data().nome,
-                        listaSeguindo: snapshot.data().seguindo
+                        listaSeguindo: snapshot.data().seguindo,
+                        userId: user.uid
                     }, this.searchPosts);                    
                     })
                 .catch(() => {
@@ -99,9 +108,9 @@ class FeedSeries extends Component {
                 foundPosts.push(<NotFound/>)
             } else { // Se encontrar, monta os posts com as informações do post
                 posts.forEach((doc) => {
-                foundPosts.push(<Post usuario={doc.usuario} nome={doc.nome} categoria={doc.categoria}
-                                         desc={doc.desc} curtidas={doc.curtidas} 
-                                         nomeConteudo={doc.nomeConteudo} comentarios={doc.comentarios} />) })
+                    foundPosts.push(<Post usuario={doc.usuario} nome={doc.nome} categoria={doc.categoria} userId={this.state.userId}
+                        desc={doc.desc} curtidas={doc.curtidas} postId={doc.postId}
+                        nomeConteudo={doc.nomeConteudo} comentarios={doc.comentarios} />) })
             }
             
             // Atualiza o state contendo posts montados
@@ -123,13 +132,13 @@ class FeedSeries extends Component {
                                 <div class="row">
 
                                     { /* Chama o componente <MenuUsuario/> com props */}
-                                    <MenuUsuario name={this.state.nameLog} username={this.state.userLog} />
+                                    <MenuUsuario name={this.state.nameLog} username={this.state.userLog} userId={this.state.userId} url={this.state.url} />
 
                                     <div class="col-lg-9 col-md-8 no-pd">
                                         <div class="main-ws-sec">
 
                                             {/* Chama o componente <Locator/> com props (identifica o Feed Atual) */}
-                                            <Locator nome="Guilherme" feed="séries"/>
+                                            <Locator nome={this.state.nameLog} feed="séries"/>
 
                                             <div class="posts-section">
 

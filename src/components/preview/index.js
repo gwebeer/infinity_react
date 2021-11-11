@@ -27,12 +27,14 @@ class Preview extends Component {
             seguir: "",
             seguidores: props.seguidores,
             idConteudo: props.idConteudo,
+            contentUrl: "",
 
             listaSeguindo: props.listaSeguindo,
         }
 
         this.componentDidMount = () => {
             this.startState()
+            this.carregaImagem();
         }
 
         this.startState = this.startState.bind(this);
@@ -40,6 +42,7 @@ class Preview extends Component {
         this.followingListUpdate = this.followingListUpdate.bind(this);
         this.follow = this.follow.bind(this);
         this.unfollow = this.unfollow.bind(this);
+        this.carregaImagem = this.carregaImagem.bind(this);
     }
 
 
@@ -55,6 +58,13 @@ class Preview extends Component {
                     this.setState({seguir: "Seguir"})
                 }
             })
+        })
+    }
+
+    carregaImagem() {
+        firebase.storage().ref('conteudos').child(this.props.idConteudo).getDownloadURL()
+        .then((url) => {
+        this.setState({contentUrl: url})
         })
     }
 
@@ -111,7 +121,7 @@ class Preview extends Component {
             <div className="post-topbar">
                 <div className="linha-preview">
                     <div className="externa-capa-preview">
-                        <img src={Luca} className="img-preview"/>
+                        <img src={this.state.contentUrl} className="img-preview"/>
                     </div>
 
                     <div className="externa-info-preview">

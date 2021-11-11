@@ -25,10 +25,23 @@ class Postbar extends Component {
         this.state = {
             post: "",
             caracteres: 320,
+            url: "",
+        }
+
+        this.componentDidMount = () => {
+            this.carregaImagem()
         }
 
         this.fAddDatabase = this.fAddDatabase.bind(this);
         this.titleId = this.titleId.bind(this);
+        this.carregaImagem = this.carregaImagem.bind(this);
+    }
+
+    carregaImagem() {
+        firebase.storage().ref('usuario').child(this.props.userId).getDownloadURL()
+        .then((url) => {
+            this.setState({url: url})
+        })
     }
 
     titleId() {
@@ -60,7 +73,7 @@ class Postbar extends Component {
             <div className="post-topbar">
                 <div className="linha postbar-top-pd">
                     <div className="externa-postbar-img">
-                        <img src={profile} className="profile-post"/>
+                        <img src={this.state.url} className="profile-post"/>
                     </div>
 
                     <div className="externa-postbar">

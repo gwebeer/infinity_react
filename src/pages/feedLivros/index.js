@@ -110,9 +110,9 @@ class FeedLivros extends Component {
                 foundPosts.push(<NotFound/>)
             } else { // Se encontrar, monta os posts com as informações do post
                 posts.forEach((doc) => {
-                foundPosts.push(<Post usuario={doc.usuario} nome={doc.nome} categoria={doc.categoria}
-                                         desc={doc.desc} curtidas={doc.curtidas} 
-                                         nomeConteudo={doc.nomeConteudo} comentarios={doc.comentarios} />) })
+                    foundPosts.push(<Post usuario={doc.usuario} nome={doc.nome} categoria={doc.categoria} userId={this.state.userId}
+                                    desc={doc.desc} curtidas={doc.curtidas} postId={doc.postId}
+                                    nomeConteudo={doc.nomeConteudo} comentarios={doc.comentarios} />) })
             }
             
             // Atualiza o state contendo posts montados
@@ -140,7 +140,7 @@ class FeedLivros extends Component {
                                         <div class="main-ws-sec">
 
                                             {/* Chama o componente <Locator/> com props (identifica o Feed Atual) */}
-                                            <Locator nome="Guilherme" feed="livros"/>
+                                            <Locator nome={this.state.nameLog} feed="livros"/>
 
                                             <div class="posts-section">
 

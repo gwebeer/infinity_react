@@ -33,6 +33,7 @@ class Conteudo extends Component {
             nameLog: "",
             userId: "",
             listaSeguindo: [],
+            url: "https://firebasestorage.googleapis.com/v0/b/infinityreact-80aef.appspot.com/o/usuario%2F3hR4mxD5ORWzjasgCy11qwBIi0K2?alt=media&token=fad1d15d-84ef-48bb-b177-390e6f9bfe5a",
 
             nome: "",
             categoria: "",
@@ -53,7 +54,7 @@ class Conteudo extends Component {
 
             this.dbValidation();
             
-            this.searchPosts();
+            // this.searchPosts();
         }
 
         this.componentDidUpdate = () => {
@@ -89,6 +90,12 @@ class Conteudo extends Component {
             .doc(user.uid)
             .get()
             .then((snapshot) => {
+
+                firebase.storage().ref('usuario').child(user.uid).getDownloadURL()
+                    .then((url) => {
+                        this.setState({url: url})
+                    })
+
                 // this.state.nomeLogado = snapshot.data().nome;
                 this.setState({
                     nameLog: snapshot.data().nome,
@@ -159,9 +166,9 @@ class Conteudo extends Component {
                 foundPosts.push(<NotFound/>)
             } else { // Se encontrar, monta os posts com as informações do post
                 posts.forEach((doc) => {
-                foundPosts.push(<Post usuario={doc.usuario} nome={doc.nome} categoria={doc.categoria}
-                                         desc={doc.desc} curtidas={doc.curtidas} 
-                                         nomeConteudo={doc.nomeConteudo} comentarios={doc.comentarios} />) })
+                    foundPosts.push(<Post usuario={doc.usuario} nome={doc.nome} categoria={doc.categoria} userId={this.state.userId}
+                                            desc={doc.desc} curtidas={doc.curtidas} postId={doc.postId}
+                                            nomeConteudo={doc.nomeConteudo} comentarios={doc.comentarios} />) })
             }
             
             // Atualiza o state contendo posts montados
@@ -197,7 +204,7 @@ class Conteudo extends Component {
                                 <div class="row">
 
                                     { /* <!-- Menu Usuario --> */}
-                                    <MenuUsuario name={this.state.nameLog} username={this.state.userLog} />
+                                    <MenuUsuario name={this.state.nameLog} username={this.state.userLog} url={this.state.url} userId={this.state.userId} />
 
                                     { /* <!-- Seção de posts --> */}
                                     <div class="col-lg-9 col-md-8 no-pd">

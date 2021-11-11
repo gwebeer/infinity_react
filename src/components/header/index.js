@@ -16,16 +16,34 @@ import '../../css/templateHome/lib/slick/slick-theme.css';
 import iconBarra from '../../images/iconbarra.png'
 import user from '../../images/user.png'
 
+import firebase from 'firebase';
+import { Link } from 'react-router-dom';
+
 class Header extends Component {
 
     constructor(props){
         super(props);
         this.state = {
-            searchBox: ""
+            searchBox: "",
+            url: "",
+        }
+
+        this.componentDidMount = () => {
+            this.imgHeader();
         }
 
         this.btSearchClick = this.btSearchClick.bind(this);
         this.searchBoxContent = this.searchBoxContent.bind(this);
+        this.imgHeader = this.imgHeader.bind(this);
+    }
+
+    imgHeader() {
+        firebase.auth().onAuthStateChanged((user)=>{
+            firebase.storage().ref('usuario').child(user.uid).getDownloadURL()
+            .then((url) => {
+                this.setState({url: url})
+            })                
+        })
     }
 
     // Seta state com conteúdo digitado na SearchBar
@@ -66,9 +84,9 @@ class Header extends Component {
 
                         {/* User Profile Superior */}
                         <div class="user-account">
-                            <div class="user-info">
-                                <img src={user}/> <a href="">{this.props.username}</a>
-                            </div>
+                            <Link to="/profile"> <div class="user-info">
+                                <img src={this.state.url} className="img-header"/> <a href="">{this.props.username}</a>
+                            </div> </Link>
                         </div>
                     </div>
                 </div>
