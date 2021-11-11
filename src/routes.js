@@ -16,9 +16,8 @@ const Routes = () => {
         <BrowserRouter>
             <Route exact path="/" component={Feed} />
             <Route exact path="/login" component={Login} />
-            <Route exact path="/cadastro" component={Cadastro} />
-            <Route exact path="/profile" component={Profile} />
             <Route exact path="/signup" component={SignUp} />
+            <Route exact path="/profile" component={Profile} />
 
             <Route exact path="/feed-filmes" component={FeedFilmes} />
             <Route exact path="/feed-livros" component={FeedLivros} />

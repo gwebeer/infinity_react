@@ -18,6 +18,7 @@ import '../../css/templateHome/cssFonts/font-awesome.min.css'
 import '../../css/templateHome/vendor/fontawesome-free/css/all.min.css';
 import '../../css/templateHome/lib/slick/slick.css';
 import '../../css/templateHome/lib/slick/slick-theme.css';
+import { Link } from 'react-router-dom';
 
 class Login extends Component {
     
@@ -115,7 +116,7 @@ class Login extends Component {
                                                         <div class="col-lg-12 no-pdd">
                                                             <div class="btns-signin">
                                                                 <button className="bt-entrar" onClick={this.btEntrarClick}>Entrar</button>
-                                                                <button className="bt-cadastrar" onClick={this.btCadastrarClick}>Cadastrar</button>
+                                                                <button className="bt-cadastrar" onClick={() => {window.location = '/signup';}} >Cadastrar</button>
                                                             </div>
                                                         </div>
                                                     </div>

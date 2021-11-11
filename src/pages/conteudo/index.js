@@ -50,8 +50,6 @@ class Conteudo extends Component {
 
         this.componentDidMount = () => {
             // Página de espera
-            demoAsyncCall().then(() => this.setState({ loading: false }));
-
             this.dbValidation();
             
             // this.searchPosts();
@@ -179,21 +177,6 @@ class Conteudo extends Component {
 
     render(){
 
-        const { loading } = this.state;
-
-        if (loading) {
-            const teste =
-                <div className="wrapper">
-                    <Header username="gui_webeer"/>
-                    {/* <Helmet title="Entrevistas" /> */}
-                    <div style={{ textAlign: "center", marginTop: "10%" }}>
-                        {/* <img src={Logo} alt="Logo" width="10%" /> */}
-                        <h5 style={{ color: "#de4C4b" }}>Inifnity</h5>
-                    </div>
-                </div>
-            return teste; // render null when 
-        }
-
         return(
             <div className="wrapper">   
                 <Header username={this.state.userLog}/>
@@ -249,7 +232,3 @@ class Conteudo extends Component {
 }
 
 export default Conteudo;
-
-function demoAsyncCall() {
-    return new Promise((resolve) => setTimeout(() => resolve(), 1000));
-}
