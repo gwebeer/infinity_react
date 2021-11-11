@@ -77,7 +77,7 @@ class Feed extends Component {
         })
     }
 
-    async searchPosts(){
+    searchPosts(){
         
         // Retorna itens da coleção posts
         firebase.firestore().collection('posts')
@@ -97,7 +97,8 @@ class Feed extends Component {
                         nomeConteudo: doc.data().nomeConteudo,
                         comentarios: doc.data().comentarios,
                         categoria: doc.data().categoria,
-                        postId: doc.id
+                        postId: doc.id,
+                        userPost: doc.data().userId
                     })
                 }
             })
@@ -110,7 +111,7 @@ class Feed extends Component {
                 foundPosts.push(<NotFound/>)
             } else { // Se encontrar, monta os posts com as informações do post
                 posts.forEach((doc) => {
-                foundPosts.push(<Post usuario={doc.usuario} nome={doc.nome} categoria={doc.categoria} userId={this.state.userId}
+                foundPosts.push(<Post usuario={doc.usuario} nome={doc.nome} categoria={doc.categoria} userId={doc.userPost}
                                          desc={doc.desc} curtidas={doc.curtidas} postId={doc.postId}
                                          nomeConteudo={doc.nomeConteudo} comentarios={doc.comentarios} />) })
             }
