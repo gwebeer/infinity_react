@@ -82,14 +82,6 @@ class ProfileHeader extends Component {
                                 <span> Seguindo </span>
                             </a>
                         </li>
-
-                        {/* Icone Meus Conteúdos */}
-                        <li data-tab="info-dd" class={this.state.classMyContents} onClick={this.myContentClick}>
-                            <a title="">
-                                <img src={icone3}/>
-                                <span> Meus Conteúdos </span>
-                            </a>
-                        </li>
                         
                     </ul>
                 </div>

@@ -25,11 +25,14 @@ class Titulo extends Component {
 
             seguidores: props.seguidores,
 
-            listaSeguindo: props.listaSeguindo
+            listaSeguindo: props.listaSeguindo,
+
+            url: "",
         }
 
         this.componentDidMount = () => {
-            this.teste()
+            this.teste();
+            this.carregaImagem();
         }
 
         this.follow = this.follow.bind(this);
@@ -38,6 +41,13 @@ class Titulo extends Component {
         this.btFollowClick = this.btFollowClick.bind(this);
         this.followingListUpdate = this.followingListUpdate.bind(this);
         this.teste = this.teste.bind(this);
+    }
+
+    carregaImagem() {
+        firebase.storage().ref('conteudos').child(this.titleId()).getDownloadURL()
+        .then((url) => {
+        this.setState({url: url})
+        })
     }
 
     teste() {
@@ -127,7 +137,7 @@ class Titulo extends Component {
 
                 <div className="linha">
                     <div className="externa">
-                        <img src={luca} className="img"/>
+                        <img src={this.state.url} className="img"/>
                     </div>
 
                     <div className="externa-info">                                              

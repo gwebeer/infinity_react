@@ -6355,9 +6355,22 @@ ul#myTab {
     color: #666666;
 }
 
-
 .btSeguir{
 	cursor: pointer;
 }
+.option-post {
+	color: #b2b2b2;
+	cursor: pointer;
+}
 
+.option-post:hover {
+	color: #f46e28;
+}
 
+.img-post {
+	width: 50px;
+}
+
+.img-header {
+	height: 35px;
+}

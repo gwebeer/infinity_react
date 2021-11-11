@@ -31,6 +31,8 @@ class Busca extends Component {
             userLog: "",
             nameLog: "",
             userId: "",
+            url: "",
+            contentUrl: "",
 
             listaSeguindo: "",
 
@@ -65,6 +67,12 @@ class Busca extends Component {
                 .doc(user.uid)    
                 .get()
                 .then((snapshot) => {
+
+                    firebase.storage().ref('usuario').child(user.uid).getDownloadURL()
+                    .then((url) => {
+                        this.setState({url: url})
+                    })
+
                     this.setState({ 
                         userLog: snapshot.data().username,
                         nameLog: snapshot.data().nome,
@@ -87,6 +95,7 @@ class Busca extends Component {
             let lista = [];
 
             snapshot.forEach((doc) => {
+                
                 lista.push({
                     nome: doc.data().nome,
                     categoria: doc.data().categoria,
@@ -100,7 +109,7 @@ class Busca extends Component {
             let foundPosts = [];
             lista.forEach((doc) => {
                 foundPosts.push(<Preview nome={doc.nome} categoria={doc.categoria} userId={this.state.userId} 
-                                         sinopse={doc.sinopse} seguidores={doc.seguidores} 
+                                         sinopse={doc.sinopse} seguidores={doc.seguidores}
                                          idConteudo={doc.id} listaSeguindo={this.state.listaSeguindo} />)
             })
 
@@ -123,7 +132,7 @@ class Busca extends Component {
                                 <div class="row">
 
                                 { /* Chama o componente <MenuUsuario/> com props */}
-                                    <MenuUsuario name={this.state.nameLog} username={this.state.userLog} userId={this.state.userId}/>
+                                    <MenuUsuario name={this.state.nameLog} username={this.state.userLog} userId={this.state.userId} url={this.state.url} userId={this.state.userId}/>
 
                                     <div class="col-lg-9 col-md-8 no-pd">
                                         <div class="main-ws-sec">

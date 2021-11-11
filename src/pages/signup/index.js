@@ -70,6 +70,8 @@ class SignUp extends Component {
             nome: this.state.form.nome,
             email: this.state.form.email,
             birthDate: this.state.form.birthDate,
+            seguindo: [],
+            curtidas: [],
         })
         .then(()=>{
             console.log('DADOS CADASTRADO COM SUCESSO!');
@@ -111,55 +113,63 @@ class SignUp extends Component {
                                             </div>	
                                         </div>
                                     </div>
+
                                     <div class="col-lg-6">
                                         <div class="login-sec">
                                             <div class="sign_in_sec current" id="tab-1">
                                                 <h4 class="instructions-sign-up">Seja bem-vindo(a)! Para se cadastrar, preencha as informações abaixo</h4>
                                                 <div class="dff-tab current" id="tab-3">
-                                                    <form>
+                                                    <form action="javascript:void(0);">
                                                         <div class="row">
+                                                            
                                                             <div class="col-lg-12 no-pdd">
                                                                 <p>Seu nome completo: </p>
                                                                 <div class="sn-field">
-                                                                    <input type="text" name="name" placeholder="Ex: Guilherme Weber"/>
+                                                                    <input type="text" name="nome" placeholder="Ex: João Silva" value={this.state.form.nome} onChange={this.dadosCadastro}/>
                                                                     <i class="la la-user"></i>
                                                                 </div>
                                                             </div>
+
                                                             <div class="col-lg-12 no-pdd">
                                                                 <p>Sua data de nascimento: </p>
                                                                 <div class="sn-field">
-                                                                    <input type="date" name="name"/>
+                                                                    <input type="date" name="birthDate" value={this.state.form.birthDate} onChange={this.dadosCadastro}/>
                                                                     <i class="la la-user"></i>
                                                                 </div>
                                                             </div>
+
                                                             <div class="col-lg-12 no-pdd">
                                                                 <p>Seu melhor e-mail: </p>
                                                                 <div class="sn-field">
-                                                                    <input type="text" name="country" placeholder="exemplo@mail.com"/>
+                                                                    <input type="text" name="email" placeholder="Ex: exemplo@mail.com" value={this.state.form.email} onChange={this.dadosCadastro}/>
                                                                     <i class="la la-globe"></i>
                                                                 </div>
                                                             </div>
+
                                                             <div class="col-lg-12 no-pdd">
                                                                 <p>Escolha um nome de usuario: </p>
                                                                 <div class="sn-field">
-                                                                    <input type="text" name="country" placeholder="weber_guilherme"/>
+                                                                    <input type="text" name="username" placeholder="Ex: joao_silva" value={this.state.form.username} onChange={this.dadosCadastro}/>
                                                                     <i class="la la-globe"></i>
                                                                 </div>
                                                             </div>
+
                                                             <div class="col-lg-12 no-pdd">
                                                                 <p>Sua senha: </p>
                                                                 <div class="sn-field">
-                                                                    <input type="password" name="password" placeholder="Senha"/>
+                                                                    <input type="password" name="password" placeholder="Senha" value={this.state.form.password} onChange={this.dadosCadastro}/>
                                                                     <i class="la la-lock"></i>
                                                                 </div>
                                                             </div>
+
                                                             <div class="col-lg-12 no-pdd">
                                                                 <p>Confirme sua senha: </p>
                                                                 <div class="sn-field">
-                                                                    <input type="password" name="repeat-password" placeholder="Confirme sua senha"/>
+                                                                    <input type="password" name="checkPassword" placeholder="Confirme sua senha" value={this.state.form.checkPassword} onChange={this.dadosCadastro}/>
                                                                     <i class="la la-lock"></i>
                                                                 </div>
                                                             </div>
+
                                                             <div class="col-lg-12 no-pdd">
                                                                 <div class="checky-sec st2">
                                                                     <div class="fgt-sec">
@@ -171,15 +181,15 @@ class SignUp extends Component {
                                                                     </div>
                                                                 </div>
                                                             </div>
+
                                                             <div class="col-lg-12 no-pdd">
-                                                                <button type="submit" value="submit">Vamos começar</button>
+                                                                <button onClick={this.btCadastroClick}>Vamos começar</button>
                                                             </div>
+
                                                         </div>
                                                     </form>
                                                 </div>
-                                                
                                             </div>
-                                            
                                     </div>
                                 </div>		
                             </div>
