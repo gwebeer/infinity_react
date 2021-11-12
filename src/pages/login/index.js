@@ -122,7 +122,7 @@ class Login extends Component {
                                                         </div>
                                                         <div class="col-lg-12 no-pdd">
                                                             <div class="checky-sec">
-                                                                <a onClick={this.handleSubmit} title="" className="forgot">Esqueceu a senha?</a>
+                                                                <p onClick={this.handleSubmit} title="" className="forgot">Esqueceu a senha?</p>
                                                             </div>
                                                         </div>
                                                         <div class="col-lg-12 no-pdd">

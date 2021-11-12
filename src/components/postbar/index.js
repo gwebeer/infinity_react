@@ -25,7 +25,7 @@ class Postbar extends Component {
         this.state = {
             post: "",
             caracteres: 320,
-            url: "",
+            urlImagem: "",
         }
 
         this.componentDidMount = () => {
@@ -40,8 +40,7 @@ class Postbar extends Component {
     carregaImagem() {
         firebase.storage().ref('usuario').child(this.props.userId).getDownloadURL()
         .then((url) => {
-            this.setState({url: url})
-            console.log(url)
+            this.setState({urlImagem: url})
         })
     }
 
@@ -74,7 +73,7 @@ class Postbar extends Component {
             <div className="post-topbar">
                 <div className="linha postbar-top-pd">
                     <div className="externa-postbar-img">
-                        <img src={this.state.url} className="profile-post"/>
+                        <img src={this.state.urlImagem} className="profile-post"/>
                     </div>
 
                     <div className="externa-postbar">
