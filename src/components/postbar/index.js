@@ -29,7 +29,7 @@ class Postbar extends Component {
         }
 
         this.componentDidMount = () => {
-            this.carregaImagem()
+            this.carregaImagem();
         }
 
         this.fAddDatabase = this.fAddDatabase.bind(this);
@@ -41,6 +41,7 @@ class Postbar extends Component {
         firebase.storage().ref('usuario').child(this.props.userId).getDownloadURL()
         .then((url) => {
             this.setState({url: url})
+            console.log(url)
         })
     }
 

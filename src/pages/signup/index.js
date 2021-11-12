@@ -52,10 +52,12 @@ class SignUp extends Component {
                 alert("As senhas não correspondem!")
             } else {
                 this.gravaBanco();
+                window.location = '/';
             }
         } else {
             alert("Preencha todos os campos!")
         }
+
     }
 
     gravaBanco(){    

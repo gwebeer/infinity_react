@@ -33,7 +33,7 @@ class Conteudo extends Component {
             nameLog: "",
             userId: "",
             listaSeguindo: [],
-            url: "https://firebasestorage.googleapis.com/v0/b/infinityreact-80aef.appspot.com/o/usuario%2F3hR4mxD5ORWzjasgCy11qwBIi0K2?alt=media&token=fad1d15d-84ef-48bb-b177-390e6f9bfe5a",
+            url: "",
 
             nome: "",
             categoria: "",
