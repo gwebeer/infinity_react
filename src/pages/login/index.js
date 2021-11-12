@@ -41,6 +41,18 @@ class Login extends Component {
 
         this.loginData = this.loginData.bind(this);
         this.btEntrarClick = this.btEntrarClick.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    handleSubmit() {
+        firebase.auth().sendPasswordResetEmail(this.state.form.username)
+        .then(() => {
+            alert("Verifique sua caixa de entrada")
+        })
+        .catch((error) => {
+            alert("Algo deu errado")
+        })
+
     }
 
     loginData(e){
@@ -110,7 +122,7 @@ class Login extends Component {
                                                         </div>
                                                         <div class="col-lg-12 no-pdd">
                                                             <div class="checky-sec">
-                                                                <a href="#" title="" className="forgot">Esqueceu a senha?</a>
+                                                                <a onClick={this.handleSubmit} title="" className="forgot">Esqueceu a senha?</a>
                                                             </div>
                                                         </div>
                                                         <div class="col-lg-12 no-pdd">
