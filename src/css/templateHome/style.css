@@ -96,6 +96,7 @@ body {
 	overflow-x: hidden;
 	font-weight: 400;
 	background-color: #f2f2f2;
+	color: white;
 }
 ol, ul {
 	list-style: none;
@@ -584,8 +585,14 @@ a:hover {
 	resize: none;
 }
 .forgot {
-	padding-right: 27%;
+	text-align: center;
+	cursor: pointer;
 }
+
+
+
+
+
 .interna{
 	background-color:#00b540;
 }
